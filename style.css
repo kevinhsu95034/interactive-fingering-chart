@@ -1,0 +1,320 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    min-width: 50px;
+}
+
+.sidebar-button {
+    background: transparent;
+    border: none;
+    color: #000;
+    font-size: 16px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.sidebar-button:hover {
+    color: lavender;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.upper-section {
+    position: relative;
+    flex: 10;
+    overflow:hidden;
+}
+
+.lower-section {
+    padding: 20px;
+    height: 40%;
+    border-top: 1px solid #ddd;
+}
+
+/*#region Grid*/
+.background-image {
+    width: auto;
+    height: 100%;
+    position: absolute;
+    text-align: center;
+    margin: auto;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    transform: scale(1.2);
+    opacity: 50%;
+}
+
+.fade::after
+{
+    content:'';
+    position:absolute;
+    width:100%;
+    height:100%;
+    box-shadow:inset 0px 0px 20px 60px white;
+    z-index: 2;
+}
+
+.overlay-svg {
+    position: absolute;
+    top: 0;
+    z-index: 3;
+}
+
+.pitch-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    height: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.pitch-row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    z-index: 3;
+    justify-content: center;
+}
+
+.pitch-button {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    width: 20px;
+    border-radius: 40px;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.pitch-button.double {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    width: 20px;
+    border-radius: 40px;
+    padding: 10px;
+    vertical-align: middle;
+    transition: background-color 0.3s;
+
+    padding-top: 9px;
+    padding-left: 3px;
+    padding-right: 17px;
+    text-align: center;
+    line-height: 4px;
+    font-size: 95%;
+}
+
+.pitch-button:hover {
+    box-shadow:inset 0px 0px 0px 3px red;
+    font-weight: bold;
+}
+
+.pitch-button.hide {
+    opacity: 50%;
+    transform: scale(0.5);
+    margin-left: -12px;
+    margin-right: -12px;
+
+}
+.pitch-button.hide:hover {
+    opacity: 80%;
+    transform: scale(0.5);
+    margin-left: -12px;
+    margin-right: -12px;
+
+}
+
+.pitch-button.focused {
+    box-shadow:inset 0px 0px 0px 3px red;
+    font-weight: bold;
+}
+
+/*#endregion*/
+
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+.music-staffs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.staff {
+    font-size: 0;
+    /*background-image: 
+        linear-gradient(180deg, 
+        #999 0px, #999 1px, 
+        transparent 1px, transparent 9px, 
+        #999 9px, #999 10px, 
+        transparent 10px, transparent 18px, 
+        #999 18px, #999 19px, 
+        transparent 17px, transparent 27px, 
+        #999 27px, #999 28px, 
+        transparent 25px, transparent 36px, 
+        #999 36px, #999 37px, 
+        transparent 37px);
+    background-size: 100% 80px;
+    */
+    position: relative;
+    height: 40px;
+}
+
+.note {
+    position:absolute;
+    bottom: 0px;
+    width: 12px;
+    height: 8px;
+    background-color: #000;
+    border-radius: 70%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.note.sharp{
+    background-color: blue;
+    font-size: 12px;
+    text-indent: -7px;
+    line-height: 4px;
+}
+
+
+.note:hover {
+    background-color: red;
+}
+
+.note-name {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    white-space: nowrap;
+    display: none;
+}
+
+.note.focused{
+    background-color: red;
+}
+.note.focused  .note-name{
+    display: block;
+}
+
+.note.show-name .note-name {
+    display: block;
+}
+
+.bar {
+    position: relative;
+    float: right;
+
+    width: 4px;
+    height: 32px;
+    margin: 0 12px;
+    margin-bottom: 48px;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+    border-right-width: 4px;
+    margin-right: 0;
+    bottom: -8px;
+}
+
+.staff-line { 
+    position:absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px solid #999;
+}
+
+.ledger {
+    position:absolute;
+    bottom: 0px;
+    width: 18px;
+    height: 1px;
+    border-bottom: 1px solid #999;
+}
+
+.treble {
+    position:absolute;
+    background-image: url(./assets/treble.svg);
+    background-repeat: no-repeat; 
+    bottom: -14px;
+    width: 50px;
+    height: 60px;
+    z-index: 5;
+}
